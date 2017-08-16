@@ -1,0 +1,20 @@
+remoteLogin("http://srramr2.southcentralus.cloudapp.azure.com:12800",prompt = "R>")
+remoteLogin("http://srramrserver.southcentralus.cloudapp.azure.com:12800",session = TRUE,commandline  = FALSE, prompt = "REMOTE-R>")
+
+remoteLogin("http://srramrserver.southcentralus.cloudapp.azure.com:12800",session=TRUE,commandline = TRUE, prompt = "REMOTE-R>")
+C:\Users\Public\Forecast
+api <- publishService(
+  name =   "forecastservice",
+code = predictvalues,
+     inputs = list(INID1 = "numeric", INID2 = "numeric", INDATE = "character"),
+     outputs = list(answer = "numeric"),
+     v = "v2.0.1"
+)
+api <- getService("forecastservice", v = "v2.0.1")
+
+result <- api$consume(1,2,"12/28/2013")
+result$output("answer")*1000
+
+
+autorest.cmd -CodeGenerator Azure.NodeJS -Modeler Swagger -Input swaggerfinal.json 
+C:\Users\srram\AppData\Roaming\npm>
